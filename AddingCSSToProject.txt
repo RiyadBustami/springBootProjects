@@ -1,0 +1,61 @@
+Adding Static Content (CSS & JS)
+
+Adding static content such as css or javascript code to in Spring Boot just take a couple 
+steps. Spring Boot automatically looks inside the static folder
+located at src/main/resources. This folder is where we will put
+our static CSS and JavaScript files. For file organization, we will create a css folder
+, and a js folder.  For this course all of our web pages will
+dynamically render data from the server side using .jsp files, so we will store
+any files we want rendered in the WEB-INF folder rather than in the static folder.
+First let's add some CSS!
+
+    *Create a new CSS file by going to new -> other -> then search for "css".
+
+    *Be careful to put it in src/main/resources/static as it may suggest putting it elsewhere.
+     Place the new css file in a new folder called css. You may name the file as you like, style.css or main.css are conventional.
+
+    *Add the link tag in your .jsp file to any external resources, just as you would an html file.
+
+    *You can also add any other static files you need like JavaScript!
+
+src/main/webapp/WEB-INF/index.jsp
+
+	<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<title>hello world</title>
+		<link rel="stylesheet" type="text/css" href="/css/style.css">
+		<script type="text/javascript" src="js/app.js"></script>
+	</head>
+	<body>
+		<h1>Hello world, with some style!</h1>
+	</body>
+	</html>
+
+
+src/main/resources/static/css/style.css
+
+
+	h1 {
+    	color: blue;
+	}
+
+	src/main/resources/static/js/app.js
+
+	alert("Hello World");
+
+
+	And in our Controller:
+
+	// ...
+	@RequestMapping("/")
+	public String index() {
+    	return "index.jsp";
+	}
+	// ...
+
+Now, we can request our static html file directly from the server. Navigate to localhost:8080 to see our file.
+
+
+
