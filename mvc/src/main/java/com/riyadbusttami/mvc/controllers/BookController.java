@@ -15,6 +15,11 @@ public class BookController {
 	public BookController(BookService bookService) {
 		this.bookService=bookService;
 	}
+	@RequestMapping("")
+	public String index(Model model) {
+		model.addAttribute("books",bookService.allBooks());
+		return "/books/index.jsp";
+	}
 	@RequestMapping("/{id}")
 	public String show(@PathVariable("id") Long id,Model model) {
 		Book book=bookService.findBook(id);
