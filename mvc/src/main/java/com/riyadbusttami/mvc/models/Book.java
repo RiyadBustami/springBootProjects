@@ -19,7 +19,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table(name="books")
 public class Book {
-    @Id
+   
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
@@ -51,6 +52,15 @@ public class Book {
     }
     public Long getId() {
 		return id;
+	}
+    public void setId(Long id) {
+		this.id = id;
+	}
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
 	}
 	public Date getCreatedAt() {
 		return createdAt;

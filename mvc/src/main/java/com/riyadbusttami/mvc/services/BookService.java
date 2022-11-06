@@ -31,19 +31,31 @@ public class BookService {
 			return null;
 		}
 	}
-	public Book updateBook(Long id,String title,String desc,String lang,Integer numOfPages) {
-		Optional<Book> optionalBook = bookRepository.findById(id);
+//	public Book updateBook(Long id,String title,String desc,String lang,Integer numOfPages) {
+//		Optional<Book> optionalBook = bookRepository.findById(id);
+//		if(optionalBook.isPresent()) {
+//			Book book=optionalBook.get();
+//			book.setDescription(desc);
+//			book.setLanguage(lang);
+//			book.setNumberOfPages(numOfPages);
+//			book.setTitle(title);
+//			return bookRepository.save(book);
+//		}
+//		else {
+//			return null;
+//		}
+//	}
+	public Book updateBook(Book book) {
+		Optional<Book> optionalBook =bookRepository.findById(book.getId());
 		if(optionalBook.isPresent()) {
-			Book book=optionalBook.get();
-			book.setDescription(desc);
-			book.setLanguage(lang);
-			book.setNumberOfPages(numOfPages);
-			book.setTitle(title);
 			return bookRepository.save(book);
 		}
 		else {
 			return null;
 		}
+		
+		
+
 	}
 	public void deleteBook(Long id) {
 		bookRepository.deleteById(id);
