@@ -18,7 +18,7 @@ public class MainController {
 	@GetMapping("/")
 	public String index(Model model) {
 		model.addAttribute("categories",categoryService.all());
-		model.addAttribute("product",productService.all());
+		model.addAttribute("products",productService.all());
 		return "index.jsp";
 	}
 

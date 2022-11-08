@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.riyadbusttami.productsandcategories.models.Category;
 import com.riyadbusttami.productsandcategories.models.Product;
 import com.riyadbusttami.productsandcategories.repositories.ProductRepository;
 
@@ -40,6 +41,14 @@ public class ProductService {
 	
 	public void delete(Product product) {
 		productRepository.delete(product);
+	}
+	
+	public List<Product> getAllNot(Category category){
+		return productRepository.findByCategoriesNotContains(category);
+	}
+	
+	public Product update(Product product) {
+		return productRepository.save(product);
 	}
 
 }

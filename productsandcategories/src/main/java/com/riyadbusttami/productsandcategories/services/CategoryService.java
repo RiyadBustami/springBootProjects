@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.riyadbusttami.productsandcategories.models.Category;
+import com.riyadbusttami.productsandcategories.models.Product;
 import com.riyadbusttami.productsandcategories.repositories.CategoryRepository;
 @Service
 public class CategoryService {
@@ -38,5 +39,12 @@ public class CategoryService {
 	}
 	public void delete(Long id) {
 		categoryRepository.deleteById(id);
+	}
+	
+	public Category update(Category category) {
+		return categoryRepository.save(category);
+	}
+	public List<Category> getAllNot(Product product){
+		return categoryRepository.findByProductsNotContains(product);
 	}
 }
