@@ -11,43 +11,44 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Read Share</title>
+    <title>Book Share</title>
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/main.css"> <!-- change to match your file/naming structure -->
     <script src="/webjars/jquery/jquery.min.js"></script>
     <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-<header class="row">
-<div class="col">
-<h1>${book.title}</h1>
+<header>
+<div>
+<h1>Change your Entry</h1>
 </div>
-<div class="col text-end">
+<div>
 <a href="/books">back to the shelves</a>
 </div>
 </header>
 <main>
-<div>
-<h3>${book.user.userName} read ${book.title} by ${book.author}.</h3>
+<div class="mx-5">
+   <form:form action="/books/${book.id }" method="post" modelAttribute="book">
+   <input type="hidden" name="_method" value="put">
+   <p class="form-group">
+   <form:label path="title">Title:</form:label>
+   <form:errors path="title"/>
+   <form:input class="form-control" path="title"/>
+   </p>
+   <p class="form-group">
+   <form:label path="author">Author:</form:label>
+   <form:errors path="author"/>
+   <form:input class="form-control" path="author"/>
+   </p>
+   <p class="form-group">
+   <form:label path="thoughts">Thoughts:</form:label>
+   <form:errors path="thoughts"/>
+   <form:textarea class="form-control" path="thoughts"/>
+   </p>
+   <form:input type="hidden" path="borrower" value="${book.borrower.id}"/>
+   <input class="btn btn-primary" type="submit" value="add"/>
+   </form:form>
 </div>
-
-<h4>Here are <c:choose ><c:when test="${book.user.id==loggedUser.id}">your </c:when><c:otherwise>${book.user.userName}'s </c:otherwise></c:choose> thoughts:</h4>
-
-<div class="border-top"></div>
-<div class="py-3">
-<p class="mx-5">${book.thoughts}</p>
-</div>
-<div class="border-bottom"></div>
-<c:if test="${book.user.id==loggedUser.id}">
-<div>
-<a href="/books/${book.id}/edit" class="d-inline"><button class="btn btn-primary">Edit</button></a>
-<form action="/books/${book.id}" method="post">
-<input type="hidden" name="_method" value="delete">
-<input type="submit" value="Delete" class="btn btn-danger"/>
-</form>
-</div>
-</c:if>
 </main>
-   
 </body>
 </html>

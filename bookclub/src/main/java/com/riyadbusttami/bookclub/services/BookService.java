@@ -41,6 +41,13 @@ public class BookService {
 			return null;
 		}
 	}
+	public void delete(Long id) {
+		bookRepository.deleteById(id);
+	}
+	
+	public List<Book> getAllNotBorrowed(){
+		return bookRepository.findAllByBorrowerIsNull();
+	}
 	
 
 }

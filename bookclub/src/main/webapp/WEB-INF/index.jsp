@@ -18,78 +18,83 @@
 <title>Login And Registration</title>
 </head>
 <body>
-
-	<h1>Welcome!</h1>
-	<p>Join our growing community.</p>
-
+<header class="container">
+	<h1 class="text-primary">Book Club</h1>
+	<p>A place for friends to share thoughts on books.</p>
+</header>
+<main class="row">
+	<div class="col border-end">
 	<form:form action="/register" method="post" modelAttribute="newUser">
 
-		<table>
+		<table class="mx-1">
 			<thead>
 				<tr>
-					<td colspan="2">Register</td>
+					<td colspan="2" class="fs-1">Register</td>
 				</tr>
 			</thead>
 			<thead>
 				<tr>
 					<td class="float-left">User Name:</td>
 					<td class="float-left"><form:errors path="userName"
-							class="text-danger" /> <form:input class="input" path="userName" />
+							class="text-danger" /> <form:input class="form-control" path="userName" />
 					</td>
 				</tr>
 				<tr>
 					<td class="float-left">Email:</td>
 					<td class="float-left"><form:errors path="email"
-							class="text-danger" /> <form:input class="input" path="email" />
+							class="text-danger" /> <form:input class="form-control" path="email" />
 					</td>
 				</tr>
 				<tr>
 					<td class="float-left">Password:</td>
 					<td class="float-left"><form:errors path="password"
-							class="text-danger" /> <form:input class="input" type="password" path="password" />
+							class="text-danger" /> <form:input class="form-control" type="password" path="password" />
 					</td>
 				</tr>
 				<tr>
 					<td class="float-left">Confirm PW:</td>
 					<td class="float-left"><form:errors path="confirm"
-							class="text-danger" /> <form:input class="input" type="password" path="confirm" />
+							class="text-danger" /> <form:input class="form-control" type="password" path="confirm" />
 					</td>
 				</tr>
 				<tr>
-					<td colspan=2><input class="input" class="button"
+					<td colspan=2><input class="btn btn-primary"
 						type="submit" value="Submit" /></td>
 				</tr>
 			</thead>
 		</table>
 	</form:form>
-	<hr>
+	</div>
+	<div class="col">
 	<form:form action="/login" method="post" modelAttribute="newLogin">
 
-		<table>
+		<table class="mx-1">
 			<thead>
 				<tr>
-					<td colspan="2">Log In</td>
+					<td colspan="2" class="fs-1">Log In</td>
 				</tr>
 			</thead>
 			<thead>
 				<tr>
 					<td class="float-left">Email:</td>
 					<td class="float-left"><form:errors path="email"
-							class="text-danger" /> <form:input class="input" path="email" />
+							class="text-danger" /> <form:input class="form-control" path="email" />
 					</td>
 				</tr>
 				<tr>
 					<td class="float-left">Password:</td>
 					<td class="float-left"><form:errors path="password"
-							class="text-danger" /> <form:input class="input" type="password" path="password" />
+							class="text-danger" /> <form:input class="form-control" type="password" path="password" />
 					</td>
 				</tr>
 				<tr>
-					<td colspan=2><input class="input" class="button"
+					<td colspan=2><input class="btn btn-primary"
 						type="submit" value="Submit" /></td>
 				</tr>
 			</thead>
 		</table>
 	</form:form>
+	</div>
+</main>
 </body>
 </html>
