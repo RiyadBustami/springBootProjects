@@ -50,7 +50,7 @@
 
 <div class="row">
 <div class="col m-5">
-<c:forEach var="task" items="${projTasks}">
+<c:forEach var="task" items="${project.tasks}">
 <h5>Added by ${task.creator.firstName} at <fmt:formatDate pattern="hh:mma MMM d" value="${task.createdAt}"/> </h5>
 <p>${task.ticket}</p>
 </c:forEach>

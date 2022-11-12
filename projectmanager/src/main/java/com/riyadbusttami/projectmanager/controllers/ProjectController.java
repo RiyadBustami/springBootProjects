@@ -114,6 +114,8 @@ public class ProjectController {
 	public String show(HttpSession session, Model model, @PathVariable("id")Long projId) {
 		if(session.getAttribute("userId")==null)return "redirect:/";
 		Project currProject = projectService.find(projId);
+		User currUser= userService.get((Long)session.getAttribute("userId"));
+		model.addAttribute("isMember", currProject.getMembers().contains(currUser));
 		model.addAttribute("project", currProject);
 		return "/projects/show.jsp";
 		
@@ -125,29 +127,23 @@ public class ProjectController {
 		User currUser= userService.get((Long)session.getAttribute("userId"));
 		Project currProject = projectService.find(projId);
 		if(!(currProject.getMembers().contains(currUser)||currProject.getLeader().getId().equals(currUser.getId()))) return "redirect:/projects/dashboard";
+		model.addAttribute("currUserFromModels",currUser);
 		model.addAttribute("project", currProject);
-		model.addAttribute("projTasks", currProject.getTasks());
 		model.addAttribute("task", new Task());
 		return "/projects/newtask.jsp";
 	}
-	@PostMapping("/{id}/tasks")
-	public String createTask(HttpSession session,@Valid @ModelAttribute("task")Task task, BindingResult result,Model model, @PathVariable("id")Long projId) {
+	@PostMapping("/{projId}/tasks")
+	public String createTask(HttpSession session,@Valid @ModelAttribute("task")Task task, BindingResult result,Model model, @PathVariable("projId")Long projId) {
 		if(session.getAttribute("userId")==null)return "redirect:/";
 		User currUser= userService.get((Long)session.getAttribute("userId"));
 		Project currProject = projectService.find(projId);
 		if(!(currProject.getMembers().contains(currUser)||currProject.getLeader().getId().equals(currUser.getId()))) return "redirect:/projects/dashboard";
 		if(result.hasErrors()) {
 			model.addAttribute("project", currProject);
-			model.addAttribute("projTasks", currProject.getTasks());
 			return "/projects/newtask.jsp";
 		}
 		else {
-			Task newTask=new Task();
-			newTask.setProject(currProject);
-			newTask.setCreator(currUser);
-			newTask.setTicket(task.getTicket());
-			newTask.setCreatedAt(task.getCreatedAt());
-			taskService.create(newTask);
+			taskService.create(task);
 			return"redirect:/projects/"+projId+"/tasks";
 		}
 		

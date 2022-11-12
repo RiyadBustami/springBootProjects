@@ -41,9 +41,11 @@
 	<p class="col"><fmt:formatDate pattern="dd/MM/yyyy" value="${project.dueDate}"/></p>
 	<p class="col"></p>
 </div>
+<c:if test="${project.leader.id==userId || isMember }">
 <div class="row">
 <a href="/projects/${project.id}/tasks">See tasks!</a>
 </div>
+</c:if>
 <c:if test="${project.leader.id==userId }">
 <div class="row text-end">
 <form:form action="/projects/${project.id}" method="post">
