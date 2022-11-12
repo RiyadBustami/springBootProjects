@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -24,12 +25,15 @@ public class Task {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotBlank
+	private String ticket;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "project_id", updatable = false)
+	@JoinColumn(name = "project_id")
 	private Project project;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "creator_id", updatable = false)
+	@JoinColumn(name = "creator_id")
 	private User creator;
 	
 	@Column(updatable=false)
@@ -43,6 +47,12 @@ public class Task {
 	}
 	public void setId(Long id) {
 		this.id = id;
+	}
+	public String getTicket() {
+		return ticket;
+	}
+	public void setTicket(String ticket) {
+		this.ticket = ticket;
 	}
 	public Project getProject() {
 		return project;

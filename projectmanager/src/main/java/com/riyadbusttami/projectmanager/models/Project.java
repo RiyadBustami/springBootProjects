@@ -48,6 +48,7 @@ public class Project {
 	@JoinColumn(name = "leader_id",updatable = false)
 	private User leader;
 	
+	@Column(updatable = false)
 	@OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
 	private List<Task> tasks;
 	

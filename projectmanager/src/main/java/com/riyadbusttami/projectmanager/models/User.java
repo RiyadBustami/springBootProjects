@@ -57,6 +57,7 @@ public class User {
 	@OneToMany(mappedBy = "leader", fetch = FetchType.LAZY)
 	private List<Project> leadingProjects;
 	
+	@Column(updatable = false)
 	@OneToMany(mappedBy = "creator", fetch = FetchType.LAZY)
 	private List<Task> tasks;
 	

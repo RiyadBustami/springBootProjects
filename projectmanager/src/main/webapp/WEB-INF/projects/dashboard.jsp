@@ -43,7 +43,7 @@
 <c:forEach var="project" items="${allProjects}">
 <c:if test="${project.leader.id!=currUser.id }">
 <tr>
-<td>${project.title}</td>
+<td><a href="/projects/${project.id}">${project.title}</a></td>
 <td>${project.leader.firstName}</td>
 <td>${project.dueDateFormatted}</td>
 <td>
@@ -72,7 +72,7 @@
 <tbody>
 <c:forEach var="project" items="${yourProjects}">
 <tr>
-<td>${project.title}</td>
+<td><a href="/projects/${project.id}">${project.title}</a></td>
 <td>${project.leader.firstName}</td>
 <td>${project.dueDateFormatted}</td>
 <td class="text-center">

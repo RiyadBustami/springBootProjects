@@ -1,6 +1,7 @@
 package com.riyadbusttami.projectmanager.controllers;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,16 +26,18 @@ public class UserController {
 	}
 	
 	@GetMapping("/")
-	public String index(@ModelAttribute("newUser")User newUser,@ModelAttribute("newLogin")LoginUser newLogin, HttpSession session ) {
+	public String index(HttpSession session, Model model) {
 		if(session.getAttribute("userId")!=null) {
 			return "redirect:/home";
 		}
 		else {
-		return "index.jsp";
+			model.addAttribute("newLogin", new LoginUser());
+			model.addAttribute("newUser", new User());
+			return "index.jsp";
 		}
 	}
 	@PostMapping("/register")
-	public String register(@ModelAttribute("newUser")User newUser,BindingResult result, Model model, HttpSession session) {
+	public String register(@Valid @ModelAttribute("newUser")User newUser,BindingResult result, Model model, HttpSession session) {
 		User user=userService.register(newUser, result);
 		if(result.hasErrors()) {
 			model.addAttribute("newLogin", new LoginUser());
@@ -47,7 +50,7 @@ public class UserController {
 		}
 	}
 	@PostMapping("/login")
-	public String login(@ModelAttribute("newLogin")LoginUser newLogin,BindingResult result, Model model, HttpSession session) {
+	public String login(@Valid @ModelAttribute("newLogin")LoginUser newLogin,BindingResult result, Model model, HttpSession session) {
 		User user=userService.login(newLogin, result);
 		if(result.hasErrors()) {
 			model.addAttribute("newUser", new User());
