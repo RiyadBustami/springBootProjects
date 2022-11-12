@@ -44,12 +44,14 @@
 <div class="row">
 <a href="/projects/${project.id}/tasks">See tasks!</a>
 </div>
+<c:if test="${project.leader.id==userId }">
 <div class="row text-end">
 <form:form action="/projects/${project.id}" method="post">
 <input type="hidden" name="_method" value="delete"/>
 <input type="submit" value="Delete Project" class="btn btn-danger">
 </form:form>
 </div>
+</c:if>
 </div>
 </main>
    

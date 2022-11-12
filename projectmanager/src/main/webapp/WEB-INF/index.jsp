@@ -23,7 +23,7 @@
 	<p class="text-center">A place for teams to manage projects</p>
 </header>
 <main class="row">
-	<div class="col border-end">
+	<div class="col border-end mx-5">
 	<form:form action="/register" method="post" modelAttribute="newUser">
 
 		<table class="mx-1">
@@ -64,14 +64,14 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan=2><input class="btn btn-primary"
-						type="submit" value="Submit" /></td>
+					<td colspan=2><input class="btn btn-primary mx-3"
+						type="submit" value="Register" /></td>
 				</tr>
 			</thead>
 		</table>
 	</form:form>
 	</div>
-	<div class="col">
+	<div class="col mx-5">
 	<form:form action="/login" method="post" modelAttribute="newLogin">
 
 		<table class="mx-1">
@@ -84,18 +84,18 @@
 				<tr>
 					<td class="float-left">Email:</td>
 					<td class="float-left"><form:errors path="email"
+							class="text-danger" /><form:errors path="password"
 							class="text-danger" /> <form:input class="form-control" path="email" />
 					</td>
 				</tr>
 				<tr>
 					<td class="float-left">Password:</td>
-					<td class="float-left"><form:errors path="password"
-							class="text-danger" /> <form:input class="form-control" type="password" path="password" />
+					<td class="float-left"> <form:input class="form-control" type="password" path="password" />
 					</td>
 				</tr>
 				<tr>
-					<td colspan=2><input class="btn btn-primary"
-						type="submit" value="Submit" /></td>
+					<td colspan=2><input class="btn btn-primary my-3"
+						type="submit" value="Login" /></td>
 				</tr>
 			</thead>
 		</table>

@@ -152,5 +152,19 @@ public class ProjectController {
 		}
 		
 	}
+	@DeleteMapping("/{id}")
+	public String deleteProject(@PathVariable("id")Long projId, HttpSession session) {
+		if(session.getAttribute("userId")==null)return "redirect:/";
+		User currUser= userService.get((Long)session.getAttribute("userId"));
+		Project currProject = projectService.find(projId);
+		if(!currProject.getLeader().getId().equals(currUser.getId())) {
+			return "redirect:/projects/dashboard";
+		}
+		else {
+			projectService.delete(currProject);
+			return "redirect:/projects/dashboard";
+			
+		}
+	}
 	
 }

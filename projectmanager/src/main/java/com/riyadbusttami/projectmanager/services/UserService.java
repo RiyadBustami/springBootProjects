@@ -49,6 +49,7 @@ public class UserService {
 		User user = potentialUser.get();
 		if(!BCrypt.checkpw(newLogin.getPassword(), user.getPassword())) {
 			result.rejectValue("password", "Matches", "Email or Pwd wrong");
+			return null;
 		}
 		if(result.hasErrors()) {
 			return null;
